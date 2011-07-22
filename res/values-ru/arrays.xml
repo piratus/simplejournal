@@ -1,0 +1,7 @@
+<resources>
+    <string-array name="securities">
+        <item>Для всех</item>
+        <item>Только друзья</item>
+        <item>Только я</item>
+    </string-array>
+</resources>

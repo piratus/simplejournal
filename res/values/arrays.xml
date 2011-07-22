@@ -1,0 +1,13 @@
+<resources>
+    <string-array name="security_values">
+        <item>public</item>
+        <item>usemask</item>
+        <item>private</item>
+    </string-array>
+
+    <string-array name="securities">
+        <item>Public</item>
+        <item>Friends only</item>
+        <item>Private</item>
+    </string-array>
+</resources>

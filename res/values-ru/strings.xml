@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="application_description">Минималистичный клиент для LiveJournal c поддержкой Markdown.</string>
+
+    <string name="app_name">Simple Journal</string>
+
+    <!-- View Labels -->
+    <string name="settings">Настройки</string>
+    <string name="edit_entry">Редактировать последнюю запись</string>
+
+    <string name="subject_label">Заголовок</string>
+    <string name="tags_label">Метки</string>
+    <string name="music_label">Музыка</string>
+
+    <!-- dialog -->
+    <string name="yay">Ура!</string>
+    <string name="entry_posted">Запись опубликована</string>
+    <string name="thanks">Спасибо</string>
+    <string name="open_in_browser">Открыть</string>
+    <string name="sending">Отправляю...</string>
+
+    <string name="user_data_not_set">Для отправки записей, следует указать логин и пароль в настройках</string>
+
+    <string name="ok_doit">Давай сделаем</string>
+    <string name="not_now">Не сейчас</string>
+
+    <string name="pitty">Это печально</string>
+    <string name="error">Ошибка</string>
+
+    <string name="something_wrong">Что-то не так</string>
+    <string name="failed_to_load">Не получилось загрузить запись</string>
+    <string name="loading">Загружаем...</string>
+
+    <!-- Preferences -->
+    <string name="preference_category_userinfo">Информация о пользователе</string>
+    <string name="preference_label_username">Имя пользователя</string>
+    <string name="preference_label_password">Пароль</string>
+
+    <string name="preference_category_formatting">Форматирование</string>
+    <string name="preference_preformatted_label">Не выпольнять автоформатирование</string>
+    <string name="preference_preformatted_summaryon">Не добавлять &lt;br&gt; в конце каждой строки</string>
+    <string name="preference_preformatted_summaryoff">Добавлять &lt;br&gt; в конце каждой строки</string>
+    <string name="preference_markdown_label">Использовать Markdown</string>
+    <string name="preference_markdown_summaryon">Запись будет отформатирована с помощью Markdown</string>
+    <string name="preference_markdown_summaryoff">Markdown не используется</string>
+
+    <!-- Menu -->
+    <string name="menu_send">Отправить</string>
+    <string name="menu_edit">Редактировать</string>
+    <string name="menu_settings">Настройки</string>
+    <string name="menu_help">Справка</string>
+
+    <string name="help_title">Markdown</string>
+    <string name="markdown_help">
+        Markdown воспринимает строки как параграф.\n
+        \n
+        Вставьте пустую строку, чтобы начать новый параграф.\n
+        \n
+        # Заголовок первого уровня\n
+        ## Заголовок второго уровня\n
+        ### И так далее\n
+        \n
+        Довольно просто вводить *наклонный*, **жирный** и --зачёркнутый-- текст.\n
+        \n
+        > Таким образом вводятся цитаты\n
+        \n
+        * Элемент неупорядоченого списка\n
+        * И ещё один элемент\n
+        \n
+        1. Элемент упорядоченного списка\n
+        2. И да - ещё один элемент\n
+    </string>
+    <string name="post_settings">Настройки записи</string>
+    <string name="security">Доступ</string>
+    <string name="security_summary">Кто может читать записи</string>
+
+</resources>
