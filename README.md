@@ -10,3 +10,19 @@ The only features included are:
 * setting entry access level (public, friends, private) 
 
 Includes English and Russian translation.
+
+## Changelog
+
+Version 0.3:
+
+* you can set entry security
+* hopefully fixed a nasty FC issue
+
+Version 0.2.1:
+
+* fixed formatting, russian and reduced package size
+
+Version 0.2:
+
+* you can edit the last entry now
+* added Markdown quick-help
