@@ -58,16 +58,15 @@ public class SimpleJournalActivity extends Activity {
         subject = (EditText) findViewById(R.id.subject);
         body = (EditText) findViewById(R.id.post);
 
-        // TODO: load saved data if any
+        loadDraft();
     }
 
     @Override
     protected void onPause() {
-        // TODO: save the entered data
-        // TODO: make sure this is the right method to do this lol
+        saveDraft();
+
         super.onPause();
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -79,12 +78,14 @@ public class SimpleJournalActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_send:
+                saveDraft();
                 doSendPost();
                 return true;
             case R.id.menu_settings:
                 startActivity(new Intent(this, SettingsActivity.class));
                 return true;
             case R.id.menu_edit:
+                saveDraft();
                 doEditPost();
                 return true;
             case R.id.menu_help:
@@ -138,7 +139,7 @@ public class SimpleJournalActivity extends Activity {
 
         final LJMethod postevent;
         if (!isEditing) {
-            data.put("clientversion", "SimpleJournal/0.2");
+            data.put("clientversion", "SimpleJournal/0.4");
             data.putAll(LJUtil.getDate(new GregorianCalendar()));
             postevent = new LJMethod("postevent", data, handler);
         } else {
@@ -359,6 +360,33 @@ public class SimpleJournalActivity extends Activity {
         body.getText().clear();
         isEditing = false;
         editingEventTime = null;
+    }
+
+    private void saveDraft() {
+        final SharedPreferences.Editor prefs =
+                PreferenceManager.getDefaultSharedPreferences(SimpleJournalActivity.this).edit();
+
+        prefs.putString(Constants.DRAFT_SUBJECT, subject.getText().toString());
+        prefs.putString(Constants.DRAFT_BODY, body.getText().toString());
+        prefs.putBoolean(Constants.DRAFT_EDITING, isEditing);
+        prefs.putString(Constants.DRAFT_EDITING_EVENT_TIME, editingEventTime);
+        prefs.putInt(Constants.DRAFT_ITEMID, itemID);
+
+        prefs.commit();
+    }
+
+    private void loadDraft() {
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(SimpleJournalActivity.this);
+
+        clearEntry();
+
+        subject.getText().append(prefs.getString(Constants.DRAFT_SUBJECT, ""));
+        body.getText().append(prefs.getString(Constants.DRAFT_BODY, ""));
+
+        isEditing = prefs.getBoolean(Constants.DRAFT_EDITING, false);
+        editingEventTime = prefs.getString(Constants.DRAFT_EDITING_EVENT_TIME, "");
+        itemID = prefs.getInt(Constants.DRAFT_ITEMID, -1);
+
     }
 
     private static String extractString(Object data) {
