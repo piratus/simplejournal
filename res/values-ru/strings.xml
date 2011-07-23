@@ -40,13 +40,16 @@
     <string name="preference_label_username">Имя пользователя</string>
     <string name="preference_label_password">Пароль</string>
 
-    <string name="preference_category_formatting">Форматирование</string>
+    <string name="preference_category_entry">Настройки записи</string>
+
     <string name="preference_preformatted_label">Не выпольнять автоформатирование</string>
     <string name="preference_preformatted_summaryon">Не добавлять &lt;br&gt; в конце каждой строки</string>
     <string name="preference_preformatted_summaryoff">Добавлять &lt;br&gt; в конце каждой строки</string>
     <string name="preference_markdown_label">Использовать Markdown</string>
     <string name="preference_markdown_summaryon">Запись будет отформатирована с помощью Markdown</string>
     <string name="preference_markdown_summaryoff">Markdown не используется</string>
+    <string name="preference_security">Доступ</string>
+    <string name="preference_security_summary">Кто может читать записи</string>
 
     <!-- Menu -->
     <string name="menu_send">Отправить</string>
@@ -54,6 +57,7 @@
     <string name="menu_settings">Настройки</string>
     <string name="menu_help">Справка</string>
 
+    <!-- Help -->
     <string name="help_title">Markdown</string>
     <string name="markdown_help">
         Markdown воспринимает строки как параграф.\n
@@ -74,8 +78,5 @@
         1. Элемент упорядоченного списка\n
         2. И да - ещё один элемент\n
     </string>
-    <string name="post_settings">Настройки записи</string>
-    <string name="security">Доступ</string>
-    <string name="security_summary">Кто может читать записи</string>
 
 </resources>
