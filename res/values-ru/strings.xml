@@ -11,6 +11,7 @@
     <string name="subject_label">Заголовок</string>
     <string name="tags_label">Метки</string>
     <string name="music_label">Музыка</string>
+    <string name="detect">Определить</string>
 
     <!-- dialog -->
     <string name="yay">Ура!</string>
@@ -31,6 +32,8 @@
     <string name="something_wrong">Что-то не так</string>
     <string name="failed_to_load">Не получилось загрузить запись</string>
     <string name="loading">Загружаем...</string>
+
+    <string name="text_entered">Вы уже ввели текст записи. Вы уверены, что хотите редактировать другую запись? Эти данные будут утеряны.</string>
 
     <!-- Preferences -->
     <string name="preference_category_userinfo">Информация о пользователе</string>

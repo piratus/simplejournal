@@ -56,7 +56,17 @@ public class SimpleJournalActivity extends Activity {
 
         subject = (EditText) findViewById(R.id.subject);
         body = (EditText) findViewById(R.id.post);
+
+        // TODO: load saved data if any
     }
+
+    @Override
+    protected void onPause() {
+        // TODO: save the entered data
+        // TODO: make sure this is the right method to do this lol
+        super.onPause();
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -74,8 +84,24 @@ public class SimpleJournalActivity extends Activity {
                 startActivity(new Intent(this, SettingsActivity.class));
                 return true;
             case R.id.menu_edit:
-//                startActivity(new Intent(this, EditEntryActivity.class));
-                new EntryLoader().execute();
+                if (subject.getText().toString().length() > 0 || body.getText().toString().length() > 0) {
+                    new AlertDialog.Builder(SimpleJournalActivity.this)
+                            .setMessage(R.string.text_entered)
+                            .setCancelable(false)
+                            .setPositiveButton(R.string.ok_doit, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int i) {
+                                    dialog.cancel();
+                                    new EntryLoader().execute();
+                                }
+                            })
+                            .setNegativeButton(R.string.not_now, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int i) {
+                                    dialog.cancel();
+                                }
+                            }).show();
+                } else {
+                    new EntryLoader().execute();
+                }
                 return true;
             case R.id.menu_help:
                 showDialog(HELP_DIALOG);
@@ -225,10 +251,9 @@ public class SimpleJournalActivity extends Activity {
             final String username = prefs.getString("username", "");
             final String password = prefs.getString("password", "");
 
-            HashMap<String, Object> result;
+            HashMap<String, Object> result = new HashMap<String, Object>();
 
             if (username.equals("") || password.equals("")) {
-                result = new HashMap<String, Object>();
                 result.put("error_code", ERROR_NO_CREDENTIALS);
                 return result;
             }
