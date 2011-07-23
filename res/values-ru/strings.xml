@@ -20,6 +20,7 @@
     <string name="sending">Отправляю...</string>
 
     <string name="user_data_not_set">Для отправки записей, следует указать логин и пароль в настройках</string>
+    <string name="entry_load_failed">Не получилось загрузить запись</string>
 
     <string name="ok_doit">Давай сделаем</string>
     <string name="not_now">Не сейчас</string>

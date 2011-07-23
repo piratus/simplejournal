@@ -21,6 +21,7 @@
     <string name="sending">Sending...</string>
 
     <string name="user_data_not_set">You should set your username and password, if you want to update your journal</string>
+    <string name="entry_load_failed">Failed to load entry</string>
 
     <string name="ok_doit">Yes, please</string>
     <string name="not_now">Not now</string>

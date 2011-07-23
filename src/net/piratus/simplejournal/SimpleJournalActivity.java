@@ -35,6 +35,9 @@ public class SimpleJournalActivity extends Activity {
     private static final int SEND_DIALOG = 1;
     private static final int HELP_DIALOG = 2;
     private static final int LOADING_DIALOG = 3;
+    private static final int NO_CREDENTIALS_DIALOG = 4;
+
+    private static final int ERROR_NO_CREDENTIALS = 1;
 
     private boolean isEditing = false;
     private int itemID;
@@ -85,31 +88,19 @@ public class SimpleJournalActivity extends Activity {
     private void doSendPost() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-        if (prefs.getString("username", "").equals("") || prefs.getString("password", "").equals("")) {
-            new AlertDialog.Builder(SimpleJournalActivity.this)
-                    .setMessage(R.string.user_data_not_set)
-                    .setCancelable(false)
-                    .setPositiveButton(R.string.ok_doit, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int i) {
-                            dialog.cancel();
-                            startActivity(new Intent(SimpleJournalActivity.this, SettingsActivity.class));
-                        }
-                    })
-                    .setNegativeButton(R.string.not_now, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int i) {
-                            dialog.cancel();
-                        }
-                    })
-                    .show();
+        final String username = prefs.getString("username", "");
+        final String password = prefs.getString("password", "");
+
+        if (username.equals("") || password.equals("")) {
+            showDialog(NO_CREDENTIALS_DIALOG);
             return;
         }
-
         showDialog(SEND_DIALOG);
 
         final HashMap<String, Object> data = new HashMap<String, Object>();
 
-        data.put("username", prefs.getString("username", ""));
-        data.put("password", prefs.getString("password", ""));
+        data.put("username", username);
+        data.put("password", password);
         data.put("ver", 1);
         data.put("lineendings", "unix");
 
@@ -165,6 +156,22 @@ public class SimpleJournalActivity extends Activity {
                         .setTitle(R.string.help_title)
                         .setMessage(R.string.markdown_help)
                         .create();
+            case NO_CREDENTIALS_DIALOG:
+                return new AlertDialog.Builder(SimpleJournalActivity.this)
+                    .setMessage(R.string.user_data_not_set)
+                    .setCancelable(false)
+                    .setPositiveButton(R.string.ok_doit, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int i) {
+                            dialog.cancel();
+                            startActivity(new Intent(SimpleJournalActivity.this, SettingsActivity.class));
+                        }
+                    })
+                    .setNegativeButton(R.string.not_now, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int i) {
+                            dialog.cancel();
+                        }
+                    }).create();
+
         }
 
         return null;
@@ -215,17 +222,27 @@ public class SimpleJournalActivity extends Activity {
         @Override
         protected HashMap<String, Object> doInBackground(Void... objects) {
             final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(SimpleJournalActivity.this);
+            final String username = prefs.getString("username", "");
+            final String password = prefs.getString("password", "");
+
+            HashMap<String, Object> result;
+
+            if (username.equals("") || password.equals("")) {
+                result = new HashMap<String, Object>();
+                result.put("error_code", ERROR_NO_CREDENTIALS);
+                return result;
+            }
 
             final HashMap<String, Object> data = new HashMap<String, Object>();
-            data.put("username", prefs.getString("username", ""));
-            data.put("password", prefs.getString("password", ""));
+            data.put("username", username);
+            data.put("password", password);
             data.put("ver", 1);
             data.put("lineendings", "unix");
             data.put("selecttype", "lastn");
             data.put("howmany", 1);
 
             final XMLRPCClient client = new XMLRPCClient("http://www.livejournal.com/interface/xmlrpc");
-            HashMap<String, Object> result;
+
             try {
                 result = (HashMap<String, Object>) client.call("LJ.XMLRPC.getevents", data);
             } catch (XMLRPCException e) {
@@ -242,8 +259,13 @@ public class SimpleJournalActivity extends Activity {
 
             String error = null;
 
-            if (result == null || !result.containsKey("events")) {
-                error = "No entries loaded";
+            if (!result.containsKey("events")) {
+                error = getResources().getString(R.string.entry_load_failed);
+            }
+
+            if (result.containsKey("error_code") && result.get("error_code").equals(ERROR_NO_CREDENTIALS)) {
+                showDialog(NO_CREDENTIALS_DIALOG);
+                return;
             } else if (result.containsKey("error")) {
                 error = (String) result.get("error");
             }
