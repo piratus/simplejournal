@@ -13,7 +13,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".SettingsActivity" android:label="@string/settings"/>
-        <activity android:name=".EditEntryActivity" android:label="@string/edit_entry"/>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET"/>
