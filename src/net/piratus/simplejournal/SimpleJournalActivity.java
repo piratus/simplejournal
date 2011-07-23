@@ -36,18 +36,19 @@ public class SimpleJournalActivity extends Activity {
     private static final int HELP_DIALOG = 2;
     private static final int LOADING_DIALOG = 3;
     private static final int NO_CREDENTIALS_DIALOG = 4;
+    private static final int CLEAR_DIALOG = 5;
 
     private static final int ERROR_NO_CREDENTIALS = 1;
 
     private boolean isEditing = false;
-    private int itemID;
-    private String editingEventTime;
+    private int itemID = -1;
+    private String editingEventTime = null;
 
     private EditText subject;
     private EditText body;
 
     /**
-     * Called when the activity is first created.
+     * Interface stuff
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -84,27 +85,13 @@ public class SimpleJournalActivity extends Activity {
                 startActivity(new Intent(this, SettingsActivity.class));
                 return true;
             case R.id.menu_edit:
-                if (subject.getText().toString().length() > 0 || body.getText().toString().length() > 0) {
-                    new AlertDialog.Builder(SimpleJournalActivity.this)
-                            .setMessage(R.string.text_entered)
-                            .setCancelable(false)
-                            .setPositiveButton(R.string.ok_doit, new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int i) {
-                                    dialog.cancel();
-                                    new EntryLoader().execute();
-                                }
-                            })
-                            .setNegativeButton(R.string.not_now, new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int i) {
-                                    dialog.cancel();
-                                }
-                            }).show();
-                } else {
-                    new EntryLoader().execute();
-                }
+                doEditPost();
                 return true;
             case R.id.menu_help:
                 showDialog(HELP_DIALOG);
+                return true;
+            case R.id.menu_clear:
+                showDialog(CLEAR_DIALOG);
                 return true;
         }
 
@@ -163,6 +150,27 @@ public class SimpleJournalActivity extends Activity {
         postevent.start();
     }
 
+    private void doEditPost() {
+        if (subject.getText().toString().length() > 0 || body.getText().toString().length() > 0) {
+            new AlertDialog.Builder(SimpleJournalActivity.this)
+                    .setMessage(R.string.text_entered)
+                    .setCancelable(false)
+                    .setPositiveButton(R.string.ok_doit, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int i) {
+                            dialog.cancel();
+                            new EntryLoader().execute();
+                        }
+                    })
+                    .setNegativeButton(R.string.not_now, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int i) {
+                            dialog.cancel();
+                        }
+                    }).show();
+        } else {
+            new EntryLoader().execute();
+        }
+    }
+
     @Override
     protected Dialog onCreateDialog(int id) {
         switch (id) {
@@ -172,16 +180,19 @@ public class SimpleJournalActivity extends Activity {
                 loadingDialog.setMessage(getString(R.string.loading));
                 loadingDialog.setCancelable(false);
                 return loadingDialog;
+
             case SEND_DIALOG:
                 final ProgressDialog progressDialog = new ProgressDialog(this);
                 progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
                 progressDialog.setMessage(getResources().getString(R.string.sending));
                 return progressDialog;
+
             case HELP_DIALOG:
                 return new AlertDialog.Builder(this)
                         .setTitle(R.string.help_title)
                         .setMessage(R.string.markdown_help)
                         .create();
+
             case NO_CREDENTIALS_DIALOG:
                 return new AlertDialog.Builder(SimpleJournalActivity.this)
                     .setMessage(R.string.user_data_not_set)
@@ -198,18 +209,34 @@ public class SimpleJournalActivity extends Activity {
                         }
                     }).create();
 
+            case CLEAR_DIALOG:
+                return new AlertDialog.Builder(SimpleJournalActivity.this)
+                        .setMessage(R.string.clear_entry)
+                        .setCancelable(true)
+                        .setPositiveButton(R.string.ok_doit, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int i) {
+                                clearEntry();
+                                dialog.cancel();
+                            }
+                        })
+                        .setNegativeButton(R.string.not_now, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int i) {
+                                dialog.cancel();
+                            }
+                        }).create();
         }
 
         return null;
     }
 
+    /**
+     * Responder for entry sending
+     */
     private final LJResponseHandler handler = new LJResponseHandler(this) {
         @Override
         protected void onSuccess(HashMap<String, Object> data) {
             final String entryLink = (String) data.get("url");
-            subject.getText().clear();
-            body.getText().clear();
-            isEditing = false;
+            clearEntry();
 
             new AlertDialog.Builder(SimpleJournalActivity.this)
                     .setCancelable(false)
@@ -239,7 +266,11 @@ public class SimpleJournalActivity extends Activity {
         }
     };
 
-        private class EntryLoader extends AsyncTask<Void, Void, HashMap> {
+
+    /**
+     * Entry editing activity
+     */
+    private class EntryLoader extends AsyncTask<Void, Void, HashMap> {
         @Override
         protected void onPreExecute() {
             showDialog(LOADING_DIALOG);
@@ -317,6 +348,17 @@ public class SimpleJournalActivity extends Activity {
             subject.setText(extractString(event.get("subject")));
             body.setText(extractString(event.get("event")));
         }
+    }
+
+    /**
+     * Utility methods
+     */
+    private void clearEntry() {
+        itemID = -1;
+        subject.getText().clear();
+        body.getText().clear();
+        isEditing = false;
+        editingEventTime = null;
     }
 
     private static String extractString(Object data) {
