@@ -4,14 +4,19 @@ A minimalistic [Live Journal](http://www.livejournal.com/) client for Android wi
 
 The only features included are:
 
-* posting an entry
-* editing latest entry
-* enabling/disabling markdown
-* setting entry access level (public, friends, private) 
+* post an entry
+* edit the latest entry
+* enable/disable markdown
+* set entry access level (public, friends, private)
+* share links and text from the system "Send to" menu
 
 Includes English and Russian translation.
 
 ## Changelog
+
+Version 0.5:
+
+* Share text and links from the "Send to" menu
 
 Version 0.4:
 
