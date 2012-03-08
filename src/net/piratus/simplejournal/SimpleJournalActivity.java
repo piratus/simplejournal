@@ -47,6 +47,30 @@ public class SimpleJournalActivity extends Activity {
     private EditText subject;
     private EditText body;
 
+    private Intent newEntryIntent = null; // not-null when there is a new text to post
+
+    private boolean entryIsEmpty() {
+        String subj = subject.getText().toString();
+        String txt = body.getText().toString();
+        return ((subj == null || subj.isEmpty())
+                && (txt == null || txt.isEmpty()));
+    }
+
+    private void loadEntryFromIntent() {
+        if (newEntryIntent != null && entryIsEmpty()) {
+            Intent intent = newEntryIntent;
+            String subj = intent.getStringExtra(Intent.EXTRA_SUBJECT);
+            String txt = intent.getStringExtra(Intent.EXTRA_TEXT);
+            if (subj != null) {
+                subject.getText().append(subj);
+            }
+            if (txt != null) {
+                body.getText().append(txt);
+            }
+            newEntryIntent = null;
+        }
+    }
+
     /**
      * Interface stuff
      */
@@ -59,6 +83,16 @@ public class SimpleJournalActivity extends Activity {
         body = (EditText) findViewById(R.id.post);
 
         loadDraft();
+
+        Intent intent = getIntent();
+        if (Intent.ACTION_SEND.equals(intent.getAction())) {
+            newEntryIntent = intent;
+            if (entryIsEmpty()) {
+                loadEntryFromIntent();
+            } else {
+                showDialog(CLEAR_DIALOG); // it calls loadEntryFromIntent() on OK
+            }
+        }
     }
 
     @Override
@@ -217,6 +251,7 @@ public class SimpleJournalActivity extends Activity {
                         .setPositiveButton(R.string.ok_doit, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int i) {
                                 clearEntry();
+                                loadEntryFromIntent();
                                 dialog.cancel();
                             }
                         })
