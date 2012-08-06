@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <PreferenceCategory android:title="@string/preference_category_userinfo">
-        <EditTextPreference android:key="username"
-            android:title="@string/preference_label_username"
-            android:singleLine="true"/>
-        <EditTextPreference android:key="password"
-            android:title="@string/preference_label_password"
-            android:inputType="textPassword"/>
-    </PreferenceCategory>
-
     <PreferenceCategory android:title="@string/preference_category_entry">
         <CheckBoxPreference android:key="markdown"
             android:defaultValue="true"

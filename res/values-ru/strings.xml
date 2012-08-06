@@ -80,5 +80,7 @@
         1. Элемент упорядоченного списка\n
         2. И да - ещё один элемент\n
     </string>
+    <string name="login_label">Войти</string>
+
 
 </resources>

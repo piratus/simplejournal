@@ -45,6 +45,9 @@ public class SimpleJournalActivity extends Activity {
     private int itemID = -1;
     private String editingEventTime = null;
 
+    private String username = null;
+    private String password = null;
+
     private EditText subject;
     private EditText body;
 
@@ -91,6 +94,9 @@ public class SimpleJournalActivity extends Activity {
         super.onActivityResult(requestCode, resultCode, data);
 
         loadDraft();
+
+        username = data.getStringExtra("username");
+        password = data.getStringExtra("password");
 
         Intent intent = getIntent();
         if (Intent.ACTION_SEND.equals(intent.getAction())) {
@@ -143,9 +149,6 @@ public class SimpleJournalActivity extends Activity {
 
     private void doSendPost() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-
-        final String username = prefs.getString("username", "");
-        final String password = prefs.getString("password", "");
 
         if (username.equals("") || password.equals("")) {
             showDialog(NO_CREDENTIALS_DIALOG);
@@ -322,10 +325,6 @@ public class SimpleJournalActivity extends Activity {
 
         @Override
         protected HashMap<String, Object> doInBackground(Void... objects) {
-            final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(SimpleJournalActivity.this);
-            final String username = prefs.getString("username", "");
-            final String password = prefs.getString("password", "");
-
             HashMap<String, Object> result = new HashMap<String, Object>();
 
             if (username.equals("") || password.equals("")) {
