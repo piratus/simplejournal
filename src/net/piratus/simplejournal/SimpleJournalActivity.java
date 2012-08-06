@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import com.petebevin.markdown.MarkdownProcessor;
+import net.piratus.simplejournal.auth.AuthenticationActivity;
 import net.piratus.simplejournal.livejournal.LJMethod;
 import net.piratus.simplejournal.livejournal.LJResponseHandler;
 import net.piratus.simplejournal.livejournal.LJUtil;
@@ -81,6 +82,14 @@ public class SimpleJournalActivity extends Activity {
 
         subject = (EditText) findViewById(R.id.subject);
         body = (EditText) findViewById(R.id.post);
+
+        final Intent login = new Intent(this, AuthenticationActivity.class);
+        startActivityForResult(login, -1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
         loadDraft();
 

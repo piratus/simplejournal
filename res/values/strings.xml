@@ -81,5 +81,6 @@
         1. Item on ordered list\n
         2. And yes - another item\n
     </string>
+    <string name="login_label">Login</string>
 
 </resources>
