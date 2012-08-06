@@ -21,13 +21,24 @@ public class AuthenticationActivity extends AccountAuthenticatorActivity {
     private String username = null;
     private String password = null;
 
+    private AccountManager accountManager = null;
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.login_activity);
+        accountManager = AccountManager.get(this);
+        Account[] accounts = accountManager.getAccountsByType("net.piratus.simplejournal");
+        if (accounts.length > 0) {
+            username = accounts[0].name;
+            password = accountManager.getPassword(accounts[0]);
 
-        mUsernameEdit = (EditText) findViewById(R.id.username_edit);
-        mPasswordEdit = (EditText) findViewById(R.id.password_edit);
+            returnResult();
+        } else {
+            setContentView(R.layout.login_activity);
+
+            mUsernameEdit = (EditText) findViewById(R.id.username_edit);
+            mPasswordEdit = (EditText) findViewById(R.id.password_edit);
+        }
     }
 
     public void doLogin(View view) {
@@ -50,11 +61,15 @@ public class AuthenticationActivity extends AccountAuthenticatorActivity {
 
             manager.addAccountExplicitly(account, password, null);
 
-            final Intent resultIntent = new Intent();
-            resultIntent.putExtra("username", username);
-            resultIntent.putExtra("password", password);
-            setResult(Activity.RESULT_OK, resultIntent);
-            finish();
+            returnResult();
         }
     };
+
+    private void returnResult() {
+        final Intent resultIntent = new Intent();
+        resultIntent.putExtra("username", username);
+        resultIntent.putExtra("password", password);
+        setResult(Activity.RESULT_OK, resultIntent);
+        finish();
+    }
 }
