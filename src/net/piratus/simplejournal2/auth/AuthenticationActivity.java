@@ -1,4 +1,4 @@
-package net.piratus.simplejournal.auth;
+package net.piratus.simplejournal2.auth;
 
 import android.accounts.Account;
 import android.accounts.AccountAuthenticatorActivity;
@@ -8,9 +8,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import net.piratus.simplejournal.R;
-import net.piratus.simplejournal.livejournal.LJMethod;
-import net.piratus.simplejournal.livejournal.LJResponseHandler;
+import net.piratus.simplejournal2.R;
+import net.piratus.simplejournal2.livejournal.LJMethod;
+import net.piratus.simplejournal2.livejournal.LJResponseHandler;
 
 import java.util.HashMap;
 
@@ -27,7 +27,7 @@ public class AuthenticationActivity extends AccountAuthenticatorActivity {
         super.onCreate(savedInstanceState);
 
         accountManager = AccountManager.get(this);
-        Account[] accounts = accountManager.getAccountsByType("net.piratus.simplejournal");
+        Account[] accounts = accountManager.getAccountsByType("net.piratus.simplejournal2");
         if (accounts.length > 0) {
             username = accounts[0].name;
             password = accountManager.getPassword(accounts[0]);

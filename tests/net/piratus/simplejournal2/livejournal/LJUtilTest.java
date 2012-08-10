@@ -1,4 +1,4 @@
-package net.piratus.simplejournal.livejournal;
+package net.piratus.simplejournal2.livejournal;
 
 import org.junit.Test;
 

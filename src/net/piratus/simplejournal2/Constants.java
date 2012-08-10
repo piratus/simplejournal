@@ -1,4 +1,4 @@
-package net.piratus.simplejournal;
+package net.piratus.simplejournal2;
 
 /**
  * User: piratus

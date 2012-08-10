@@ -1,4 +1,4 @@
-package net.piratus.simplejournal.livejournal;
+package net.piratus.simplejournal2.livejournal;
 
 import java.util.Calendar;
 import java.util.HashMap;

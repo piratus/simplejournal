@@ -1,4 +1,4 @@
-package net.piratus.simplejournal.livejournal;
+package net.piratus.simplejournal2.livejournal;
 
 import android.os.Bundle;
 import android.os.Handler;

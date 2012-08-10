@@ -1,4 +1,4 @@
-package net.piratus.simplejournal;
+package net.piratus.simplejournal2;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -15,10 +15,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import com.petebevin.markdown.MarkdownProcessor;
-import net.piratus.simplejournal.auth.AuthenticationActivity;
-import net.piratus.simplejournal.livejournal.LJMethod;
-import net.piratus.simplejournal.livejournal.LJResponseHandler;
-import net.piratus.simplejournal.livejournal.LJUtil;
+import net.piratus.simplejournal2.auth.AuthenticationActivity;
+import net.piratus.simplejournal2.livejournal.LJMethod;
+import net.piratus.simplejournal2.livejournal.LJResponseHandler;
+import net.piratus.simplejournal2.livejournal.LJUtil;
 import org.xmlrpc.android.XMLRPCClient;
 import org.xmlrpc.android.XMLRPCException;
 

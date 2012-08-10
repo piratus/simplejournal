@@ -1,4 +1,4 @@
-package net.piratus.simplejournal.auth;
+package net.piratus.simplejournal2.auth;
 
 import android.accounts.AbstractAccountAuthenticator;
 import android.accounts.Account;

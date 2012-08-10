@@ -1,4 +1,4 @@
-package net.piratus.simplejournal.livejournal;
+package net.piratus.simplejournal2.livejournal;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -6,7 +6,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import net.piratus.simplejournal.R;
+import net.piratus.simplejournal2.R;
 
 import java.util.HashMap;
 
