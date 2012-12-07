@@ -20,7 +20,8 @@
         android:description="@string/application_description">
         <activity
             android:name=".SimpleJournalActivity"
-            android:windowSoftInputMode="stateVisible|adjustResize">
+            android:windowSoftInputMode="stateVisible|adjustResize"
+            android:launchMode="standard">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -38,8 +39,7 @@
         <activity android:name=".auth.AuthenticationActivity" />
 
         <service
-            android:name=".auth.AuthenticationService"
-            android:exported="false">
+            android:name=".auth.AuthenticationService">
             <intent-filter>
                 <action android:name="android.accounts.AccountAuthenticator" />
             </intent-filter>

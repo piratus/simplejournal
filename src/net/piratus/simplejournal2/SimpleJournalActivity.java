@@ -86,7 +86,7 @@ public class SimpleJournalActivity extends Activity {
         subject = (EditText) findViewById(R.id.subject);
         body = (EditText) findViewById(R.id.post);
 
-        startActivityForResult(new Intent(this, AuthenticationActivity.class), -1);
+        startActivityForResult(new Intent(this, AuthenticationActivity.class), 0);
     }
 
     @Override
