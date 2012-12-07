@@ -57,7 +57,7 @@ public class AuthenticationActivity extends AccountAuthenticatorActivity {
         @Override
         protected void onSuccess(HashMap<String, Object> data) {
             final AccountManager manager = AccountManager.get(AuthenticationActivity.this);
-            final Account account = new Account(username, "net.piratus.simplejournal");
+            final Account account = new Account(username, "net.piratus.simplejournal2");
 
             manager.addAccountExplicitly(account, password, null);
 
