@@ -18,7 +18,7 @@
     <string name="entry_posted">Запись опубликована</string>
     <string name="thanks">Спасибо</string>
     <string name="open_in_browser">Открыть</string>
-    <string name="sending">Отправляю...</string>
+    <string name="sending">Отправляю…</string>
 
     <string name="user_data_not_set">Для отправки записей, следует указать логин и пароль в настройках</string>
     <string name="entry_load_failed">Не получилось загрузить запись</string>
@@ -31,7 +31,7 @@
 
     <string name="something_wrong">Что-то не так</string>
     <string name="failed_to_load">Не получилось загрузить запись</string>
-    <string name="loading">Загружаем...</string>
+    <string name="loading">Загружаем…</string>
 
     <string name="text_entered">Вы уже ввели текст записи. Вы уверены, что хотите редактировать другую запись? Эти данные будут утеряны.</string>
     <string name="clear_entry">Удалить всё написанное и начать заново?</string>
@@ -61,7 +61,7 @@
 
     <!-- Help -->
     <string name="help_title">Markdown</string>
-    <string name="markdown_help">
+    <string name="markdown_help"><![CDATA[
         Markdown воспринимает строки как параграф.\n
         \n
         Вставьте пустую строку, чтобы начать новый параграф.\n
@@ -79,7 +79,7 @@
         \n
         1. Элемент упорядоченного списка\n
         2. И да - ещё один элемент\n
-    </string>
+    ]]></string>
     <string name="login_label">Войти</string>
 
 

@@ -1,43 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="net.piratus.simplejournal2"
-          android:versionCode="8"
-          android:versionName="2.beta">
+    package="net.piratus.simplejournal2"
+    android:versionCode="8"
+    android:versionName="2.0">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCOUNT_MANAGER"/>
-    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS"/>
-    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCOUNT_MANAGER" />
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
 
-    <uses-sdk android:minSdkVersion="7"
-              android:targetSdkVersion="11"/>
+    <uses-sdk
+        android:minSdkVersion="7"
+        android:targetSdkVersion="11" />
 
-    <application android:label="Simple Journal 2"
-            android:theme="@android:style/Theme.Holo.Light"
-            android:icon="@drawable/icon"
-            android:description="@string/application_description">
-        <activity android:name=".SimpleJournalActivity"
-                android:windowSoftInputMode="stateVisible|adjustResize">
+    <application
+        android:label="Simple Journal 2"
+        android:theme="@android:style/Theme.Holo.Light"
+        android:icon="@drawable/icon"
+        android:description="@string/application_description">
+        <activity
+            android:name=".SimpleJournalActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <intent-filter>
-                    <action android:name="android.intent.action.SEND" />
-                    <category android:name="android.intent.category.DEFAULT" />
-                    <data android:mimeType="text/plain" />
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".SettingsActivity" android:label="@string/settings"/>
-        <activity android:name=".auth.AuthenticationActivity"/>
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/settings" />
+        <activity android:name=".auth.AuthenticationActivity" />
 
-        <service android:name=".auth.AuthenticationService">
+        <service
+            android:name=".auth.AuthenticationService"
+            android:exported="false">
             <intent-filter>
-                <action android:name="android.accounts.AccountAuthenticator"/>
+                <action android:name="android.accounts.AccountAuthenticator" />
             </intent-filter>
-            <meta-data android:name="android.accounts.AccountAuthenticator"
-                       android:resource="@xml/authenticator"/>
+            <meta-data
+                android:name="android.accounts.AccountAuthenticator"
+                android:resource="@xml/authenticator" />
         </service>
     </application>
 </manifest>

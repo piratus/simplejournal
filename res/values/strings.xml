@@ -18,7 +18,7 @@
     <string name="entry_posted">Entry successfully posted</string>
     <string name="thanks">Thanks</string>
     <string name="open_in_browser">Open in browser</string>
-    <string name="sending">Sending...</string>
+    <string name="sending">Sending…</string>
 
     <string name="user_data_not_set">You should set your username and password, if you want to update your journal</string>
     <string name="entry_load_failed">Failed to load entry</string>
@@ -31,7 +31,7 @@
 
     <string name="something_wrong">Something\'s wrong</string>
     <string name="failed_to_load">Failed to load entry</string>
-    <string name="loading">Loading...</string>
+    <string name="loading">Loading…</string>
 
     <string name="text_entered">You\'ve already entered some text. Are you sure you want to edit another entry? Current data will be lost.</string>
     <string name="clear_entry">Clear all text and start over?</string>
@@ -62,7 +62,7 @@
 
     <!-- Help -->
     <string name="help_title">Markdown</string>
-    <string name="markdown_help">
+    <string name="markdown_help"><![CDATA[
         Markdown accepts text on consecutive lines as a hard-wrapped paragraph.\n
         \n
         Put a blank Line in between to start a new paragraph.\n
@@ -80,7 +80,7 @@
         \n
         1. Item on ordered list\n
         2. And yes - another item\n
-    </string>
+    ]]></string>
     <string name="login_label">Login</string>
 
 </resources>

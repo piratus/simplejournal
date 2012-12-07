@@ -4,16 +4,20 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
-    <EditText android:id="@+id/subject" android:singleLine="true"
-              android:layout_width="fill_parent" android:layout_height="wrap_content"
-              android:inputType="textCapSentences"
-              android:hint="@string/subject_label"/>
+    <EditText
+        android:id="@+id/subject"
+        android:singleLine="true"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textCapSentences"
+        android:hint="@string/subject_label" />
 
-    <EditText android:id="@+id/post"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textCapSentences|textLongMessage|textMultiLine"
-            android:layout_weight="1"
-            android:gravity="top"/>
+    <EditText
+        android:id="@+id/post"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textCapSentences|textLongMessage|textMultiLine"
+        android:layout_weight="1"
+        android:gravity="top" />
 
 </LinearLayout>

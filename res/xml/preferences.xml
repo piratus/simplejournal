@@ -2,16 +2,18 @@
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory android:title="@string/preference_category_entry">
-        <CheckBoxPreference android:key="markdown"
+        <CheckBoxPreference
+            android:key="markdown"
             android:defaultValue="true"
             android:title="@string/preference_markdown_label"
             android:summaryOn="@string/preference_markdown_summaryon"
-            android:summaryOff="@string/preference_markdown_summaryoff"/>
-        <ListPreference android:key="security"
-                        android:title="@string/preference_security"
-                        android:entries="@array/securities"
-                        android:entryValues="@array/security_values"
-                        android:defaultValue="public"
-                        android:summary="@string/preference_security_summary"/>
+            android:summaryOff="@string/preference_markdown_summaryoff" />
+        <ListPreference
+            android:key="security"
+            android:title="@string/preference_security"
+            android:entries="@array/securities"
+            android:entryValues="@array/security_values"
+            android:defaultValue="public"
+            android:summary="@string/preference_security_summary" />
     </PreferenceCategory>
 </PreferenceScreen>
